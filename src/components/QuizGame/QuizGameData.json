@@ -1,0 +1,53 @@
+[
+  {
+    "question": "Vad är huvudstaden i Frankrike?",
+    "image": "/QuizPics/paris.jpg",
+    "options": ["London", "Berlin", "Paris", "Rom"],
+    "correctAnswer": "Paris"
+  },
+  {
+    "question": "Vilket är världens största ocean?",
+    "image": "/QuizPics/Quiz.png",
+    "options": ["Atlanten", "Stilla havet", "Indiska oceanen", "Norra ishavet"],
+    "correctAnswer": "Stilla havet"
+  },
+  {
+    "question": "Vem skrev Romeo och Julia?",
+    "image": "/QuizPics/Quiz.png",
+    "options": [
+      "William Wordsworth",
+      "Charles Dickens",
+      "Jane Austen",
+      "William Shakespeare"
+    ],
+    "correctAnswer": "William Shakespeare"
+  },
+  {
+    "question": "Vilken av följande städer är känd som 'Staden som aldrig sover'?",
+    "options": ["Paris", "London", "New York", "Tokyo"],
+    "image": "/QuizPics/Quiz.png",
+    "correctAnswer": "New York"
+  },
+  {
+    "question": "Vilken historisk person sa 'To be or not to be, that is the question'?",
+    "options": [
+      "William Shakespeare",
+      "Winston Churchill",
+      "Abraham Lincoln",
+      "Napoleon Bonaparte"
+    ],
+    "image": "/QuizPics/Quiz.png",
+    "correctAnswer": "William Shakespeare"
+  },
+  {
+    "question": "Vilken världsberömd vetenskapsman formulerade relativitetsteorin?",
+    "options": [
+      "Isaac Newton",
+      "Albert Einstein",
+      "Galileo Galilei",
+      "Stephen Hawking"
+    ],
+    "image": "/QuizPics/Quiz.png",
+    "correctAnswer": "Albert Einstein"
+  }
+]
