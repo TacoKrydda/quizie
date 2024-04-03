@@ -1,25 +1,51 @@
 import React, { useEffect, useState } from "react";
-import style from "./QuizGame.module.css";
-import { QuestionProps } from "./QuizGameProps";
+import { useNavigate } from "react-router-dom";
+import { QuestionProps, QuizGameProps } from "./QuizGameProps";
 import QuizGameData from "./QuizGameData.json";
 import ShuffleQuestions from "./ShuffleQuestions";
-import QuizGameEnd from "./QuizGameEnd";
 
-const QuizGame = () => {
+import style from "./QuizGame.module.css";
+
+import backgroundMusic from "./sounds/BgMusic.mp3";
+import correctAnswerSound from "./sounds/siu.mp3";
+import wrongAnswerSound from "./sounds/wrong.mp3";
+import wrongAnserSound2 from "./sounds/StreakWrong3.mp3";
+
+const QuizGame: React.FC<QuizGameProps> = ({ setTotalScore, totalScore }) => {
+  const navigate = useNavigate();
+  const [currentQuestionIndex, setCurrentQuestionIndex] = useState<number>(0);
   const [shuffledQuestions, setShuffledQuestions] = useState<QuestionProps[]>(
     []
   );
-  const [currentQuestionIndex, setCurrentQuestionIndex] = useState<number>(0);
   const [shuffledOptions, setShuffledOptions] = useState<string[]>([]);
   const [selectedOption, setSelectedOption] = useState<string | null>(null);
   const [answered, setAnswered] = useState<boolean>(false);
-  const [totalScore, setTotalScore] = useState<number>(0);
-  const [quizCompleted, setQuizCompleted] = useState<boolean>(false);
+  const [consecutiveWrongAnswers, setConsecutiveWrongAnswers] =
+    useState<number>(0);
+
+  // Ladda rätt ljudeffekter
+  const correctAnswerAudio = new Audio(correctAnswerSound);
+  const wrongAnswerAudio = new Audio(wrongAnswerSound);
+  const wrongAnswerAudio2 = new Audio(wrongAnserSound2);
 
   // Slumpa frågorna när komponenten monteras
   useEffect(() => {
     const shuffled = ShuffleQuestions(QuizGameData);
     setShuffledQuestions(shuffled);
+
+    const backgroundAudio = new Audio(backgroundMusic);
+
+    // Ladda musiken när komponenten monteras
+    backgroundAudio.loop = true;
+    backgroundAudio.volume = 0.8;
+    backgroundAudio.addEventListener("canplaythrough", () => {
+      backgroundAudio.play(); // Spela musiken när ljudet är klart att spelas
+    });
+
+    return () => {
+      console.log("puase the music");
+      backgroundAudio.pause();
+    };
   }, []);
 
   useEffect(() => {
@@ -34,12 +60,12 @@ const QuizGame = () => {
     }
   }, [shuffledQuestions, currentQuestionIndex]);
 
-  // När användaren svarar på sista frågan, markera quizen som avslutad
+  // När användaren svarar på sista frågan, navigera till slutsidan
   useEffect(() => {
     if (currentQuestionIndex === shuffledQuestions.length - 1 && answered) {
-      setQuizCompleted(true);
+      navigate("/end");
     }
-  }, [currentQuestionIndex, answered, shuffledQuestions.length]);
+  }, [currentQuestionIndex, answered, shuffledQuestions.length, navigate]);
 
   const handleOptionSelect = (option: string) => {
     if (!answered) {
@@ -47,6 +73,15 @@ const QuizGame = () => {
       setAnswered(true);
       if (option === shuffledQuestions[currentQuestionIndex].correctAnswer) {
         handleScoreUpdate(totalScore + 1);
+        correctAnswerAudio.play();
+        setConsecutiveWrongAnswers(0);
+      } else {
+        setConsecutiveWrongAnswers(consecutiveWrongAnswers + 1);
+        if (consecutiveWrongAnswers < 2) {
+          wrongAnswerAudio.play();
+        } else if (consecutiveWrongAnswers >= 2) {
+          wrongAnswerAudio2.play();
+        }
       }
     }
   };
@@ -62,10 +97,6 @@ const QuizGame = () => {
   const handleNextQuestion = () => {
     setCurrentQuestionIndex((prevIndex) => prevIndex + 1);
   };
-
-  if (quizCompleted) {
-    return <QuizGameEnd totalScore={totalScore} />;
-  }
 
   return (
     <>

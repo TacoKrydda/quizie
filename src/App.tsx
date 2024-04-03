@@ -1,9 +1,9 @@
-import QuizGame from "./components/QuizGame/QuizGame";
+import QuizE from "./components/QuizGame/QuizE";
 
 const App = () => {
   return (
     <div className="App">
-      <QuizGame />
+      <QuizE />
     </div>
   );
 };

@@ -1,5 +1,6 @@
 import React from "react";
 import style from "./QuizGameEnd.module.css";
+import { Link } from "react-router-dom";
 
 interface QuizGameEndProps {
   totalScore: number;
@@ -17,10 +18,12 @@ const QuizGameEnd: React.FC<QuizGameEndProps> = ({ totalScore }) => {
         />
       </div>
       <div className={style.div3}>
-        You got {totalScore} quiz questions correct
+        <p>You got {totalScore} quiz questions correct</p>
       </div>
       <div className={style.div4}>
-        <button>Starta om</button>
+        <Link to="/">
+          <button>Start Sida</button>
+        </Link>
       </div>
     </div>
   );

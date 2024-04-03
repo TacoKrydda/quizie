@@ -79,15 +79,15 @@
 
   .rubrikText h2 {
     font-size: large;
-    animation: pulse 2s infinite alternate; 
+    animation: pulse 2s infinite alternate;
   }
 
   @keyframes pulse {
     0% {
-      text-shadow: 0 0 0 rgba(255, 255, 255, 0.8); 
+      text-shadow: 0 0 0 rgba(255, 255, 255, 0.8);
     }
     100% {
-      text-shadow: 0 0 20px rgba(255, 255, 255, 0.8); 
+      text-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
     }
   }
 
