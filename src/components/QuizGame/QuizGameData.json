@@ -29,17 +29,6 @@
     "correctAnswer": "New York"
   },
   {
-    "question": "Vilken historisk person sa 'To be or not to be, that is the question'?",
-    "options": [
-      "William Shakespeare",
-      "Winston Churchill",
-      "Abraham Lincoln",
-      "Napoleon Bonaparte"
-    ],
-    "image": "/QuizPics/Quiz.png",
-    "correctAnswer": "William Shakespeare"
-  },
-  {
     "question": "Vilken världsberömd vetenskapsman formulerade relativitetsteorin?",
     "options": [
       "Isaac Newton",
@@ -49,5 +38,35 @@
     ],
     "image": "/QuizPics/Quiz.png",
     "correctAnswer": "Albert Einstein"
+  },
+  {
+    "question": "Vilket är världens längsta flod?",
+    "options": ["Nilen", "Amazonfloden", "Mississippi", "Yangtze"],
+    "correctAnswer": "Nilen"
+  },
+  {
+    "question": "Vem skrev boken 'Moby Dick'?",
+    "options": [
+      "Herman Melville",
+      "Mark Twain",
+      "Charles Dickens",
+      "Leo Tolstoy"
+    ],
+    "correctAnswer": "Herman Melville"
+  },
+  {
+    "question": "Vilket land är känt som 'Landet av de tusen sjöarna'?",
+    "options": ["Sverige", "Finland", "Norge", "Kanada"],
+    "correctAnswer": "Finland"
+  },
+  {
+    "question": "Vilken färg är en blandning av rött och grönt?",
+    "options": ["Lila", "Brun", "Blå", "Gul"],
+    "correctAnswer": "Gul"
+  },
+  {
+    "question": "Vilken planet i vårt solsystem är känd som 'Morgonstjärnan' eller 'Aftonstjärnan'?",
+    "options": ["Mars", "Venus", "Jupiter", "Saturnus"],
+    "correctAnswer": "Venus"
   }
 ]
