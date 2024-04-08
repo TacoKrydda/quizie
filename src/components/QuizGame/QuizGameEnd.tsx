@@ -1,10 +1,6 @@
-import React from "react";
 import style from "./QuizGameEnd.module.css";
 import { Link } from "react-router-dom";
-
-interface QuizGameEndProps {
-  totalScore: number;
-}
+import { QuizGameEndProps } from "./QuizGameProps";
 
 const QuizGameEnd: React.FC<QuizGameEndProps> = ({ totalScore }) => {
   return (

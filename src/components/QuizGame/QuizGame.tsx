@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { MutableRefObject, useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { QuestionProps, QuizGameProps } from "./QuizGameProps";
 import QuizGameData from "./QuizGameData.json";
@@ -6,10 +6,11 @@ import ShuffleQuestions from "./ShuffleQuestions";
 
 import style from "./QuizGame.module.css";
 
-import backgroundMusic from "./sounds/BgMusic.mp3";
 import correctAnswerSound from "./sounds/siu.mp3";
 import wrongAnswerSound from "./sounds/wrong.mp3";
 import wrongAnserSound2 from "./sounds/StreakWrong3.mp3";
+
+import backgroundMusic from "./sounds/BgMusic.mp3";
 
 const QuizGame: React.FC<QuizGameProps> = ({ setTotalScore, totalScore }) => {
   const navigate = useNavigate();
@@ -23,29 +24,42 @@ const QuizGame: React.FC<QuizGameProps> = ({ setTotalScore, totalScore }) => {
   const [consecutiveWrongAnswers, setConsecutiveWrongAnswers] =
     useState<number>(0);
 
+  const backgroundAudioRef: MutableRefObject<HTMLAudioElement> = useRef(
+    new Audio(backgroundMusic)
+  );
   // Ladda rätt ljudeffekter
   const correctAnswerAudio = new Audio(correctAnswerSound);
   const wrongAnswerAudio = new Audio(wrongAnswerSound);
   const wrongAnswerAudio2 = new Audio(wrongAnserSound2);
+  const [isMusicActive, setIsMusicActive] = useState<boolean>(true);
+
+  useEffect(() => {
+    const backgroundAudio = backgroundAudioRef.current;
+
+    if (!backgroundAudio.paused && isMusicActive) {
+      return; // Om musiken redan spelas, gör inget
+    }
+
+    try {
+      if (isMusicActive) {
+        backgroundAudio.loop = true;
+        backgroundAudio.volume = 0.5;
+        backgroundAudio.play();
+        console.log(true);
+      } else {
+        console.log(false);
+        backgroundAudio.pause();
+        navigate("/end");
+      }
+    } catch (error) {
+      console.log("error: ", error);
+    }
+  }, [isMusicActive, navigate]);
 
   // Slumpa frågorna när komponenten monteras
   useEffect(() => {
     const shuffled = ShuffleQuestions(QuizGameData);
     setShuffledQuestions(shuffled);
-
-    const backgroundAudio = new Audio(backgroundMusic);
-
-    // Ladda musiken när komponenten monteras
-    backgroundAudio.loop = true;
-    backgroundAudio.volume = 0.8;
-    backgroundAudio.addEventListener("canplaythrough", () => {
-      backgroundAudio.play(); // Spela musiken när ljudet är klart att spelas
-    });
-
-    return () => {
-      console.log("puase the music");
-      backgroundAudio.pause();
-    };
   }, []);
 
   useEffect(() => {
@@ -63,9 +77,9 @@ const QuizGame: React.FC<QuizGameProps> = ({ setTotalScore, totalScore }) => {
   // När användaren svarar på sista frågan, navigera till slutsidan
   useEffect(() => {
     if (currentQuestionIndex === shuffledQuestions.length - 1 && answered) {
-      navigate("/end");
+      setIsMusicActive(false);
     }
-  }, [currentQuestionIndex, answered, shuffledQuestions.length, navigate]);
+  }, [currentQuestionIndex, answered, shuffledQuestions.length]);
 
   const handleOptionSelect = (option: string) => {
     if (!answered) {

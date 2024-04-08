@@ -191,6 +191,7 @@
     margin: 4px;
     background-color: #82c8a4;
     color: gold;
+    text-align: center;
   }
 
   .div2 {
@@ -200,8 +201,8 @@
   }
 
   .div2 img {
-    height: -webkit-fill-available;
-    width: -webkit-fill-available;
+    height: 100%;
+    width: 100%;
   }
 
   .questionImage {
