@@ -42,6 +42,7 @@
   {
     "question": "Vilket är världens längsta flod?",
     "options": ["Nilen", "Amazonfloden", "Mississippi", "Yangtze"],
+    "image": "/QuizPics/Quiz.png",
     "correctAnswer": "Nilen"
   },
   {
@@ -52,21 +53,25 @@
       "Charles Dickens",
       "Leo Tolstoy"
     ],
+    "image": "/QuizPics/Quiz.png",
     "correctAnswer": "Herman Melville"
   },
   {
     "question": "Vilket land är känt som 'Landet av de tusen sjöarna'?",
     "options": ["Sverige", "Finland", "Norge", "Kanada"],
+    "image": "/QuizPics/Quiz.png",
     "correctAnswer": "Finland"
   },
   {
     "question": "Vilken färg är en blandning av rött och grönt?",
     "options": ["Lila", "Brun", "Blå", "Gul"],
+    "image": "/QuizPics/Quiz.png",
     "correctAnswer": "Gul"
   },
   {
     "question": "Vilken planet i vårt solsystem är känd som 'Morgonstjärnan' eller 'Aftonstjärnan'?",
     "options": ["Mars", "Venus", "Jupiter", "Saturnus"],
+    "image": "/QuizPics/Quiz.png",
     "correctAnswer": "Venus"
   }
 ]
